@@ -28,7 +28,7 @@ body {
 
 main{
   padding: 3rem .5rem;
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -87,4 +87,8 @@ form > button:hover{
   background-color: transparent;
   width: 100%;
   animation: loading infinite 1s linear;
+}
+
+.video{
+  width: 100%;
 }
