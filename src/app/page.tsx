@@ -18,7 +18,7 @@ function Loader(){
 export default function Page() {
   const [formData, setFormData] = useState("")
   const [showLoader, setShowLoader] = useState(false)
-  const [videoPlayId, setVideoPlayId] = useState("")
+  const [videoPlayId] = useState("")
 
   function changeHandler(inputElement: HTMLInputElement){
     const { value } = inputElement
@@ -34,23 +34,21 @@ export default function Page() {
       tokenSecret: process.env.NEXT_PUBLIC_MUX_TOKEN_SECRET
     });
 
-    console.log(mux)
+    try {
+      const asset = await mux.video.assets.create({
+        input: [{ url: `${formData}` }],
+        playback_policy: ['public'],
+        video_quality: 'basic',
+      });
 
-    // try {
-    //   const asset = await mux.video.assets.create({
-    //     input: [{ url: `${formData}` }],
-    //     playback_policy: ['public'],
-    //     video_quality: 'basic',
-    //   });
-
-    //   console.log(asset)
+      console.log(asset)
 
 
-    //   setShowLoader(false)
-    // } catch (error) {
-    //   alert(error)
-    //   setShowLoader(false)
-    // }
+      setShowLoader(false)
+    } catch (error) {
+      alert(error)
+      setShowLoader(false)
+    }
   }
 
   return (
