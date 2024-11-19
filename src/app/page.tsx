@@ -24,6 +24,7 @@ export default function Page() {
     const { value } = inputElement
     setFormData(value)
   }
+  
 
   async function submitHandler(form: FormEvent){
     form.preventDefault()
